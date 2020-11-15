@@ -1,14 +1,12 @@
 class PostsController < ApplicationController
 
-  def index #indexアクションを定義した
-    @posts = Post.all
-  end
-
-  def new
+  def index
+    @posts = Post.all.order(id: "DESC")
   end
 
   def create
     Post.create(content: params[:content])
+    redirected_to action: :index
   end
 
 end
